@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "installing Nginx\t\t...\t\e[32mdone\e[0m"
+echo -e "installing Nginx\t\t...\t\e[32mdone\e[0m"
 yum install nginx -y
 
 echo "enabling Nginx"
