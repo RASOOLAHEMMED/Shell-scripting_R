@@ -12,6 +12,6 @@ sample() {
 ## call the fucntion
 
 a=100
-sample
+sample ABC
 echo value of b = ${b}
 echo first argument in function=$1
