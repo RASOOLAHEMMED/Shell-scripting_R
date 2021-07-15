@@ -7,5 +7,6 @@ sample() {
 }
 
 ## call the fucntion
+
 a=100
 sample
