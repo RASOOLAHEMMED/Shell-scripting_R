@@ -8,5 +8,5 @@ echo Welcome,Today date is $DATE
 NO_OF_USERS=$(who | wc -l)
 echo Number of users = $NO_OF_USERS
 ##Date with command substitution
-DATE=(date +%F)
+DATE=$(date +%F)
 echo Welcome Todays date is $DATE
