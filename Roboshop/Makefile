@@ -1,4 +1,5 @@
-frontend:
+help:  ##print this message
+frontend: ##install frontend component
 	@echo installing frontend
 cart:
 	@echo installing cart
