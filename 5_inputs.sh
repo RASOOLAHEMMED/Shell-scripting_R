@@ -8,7 +8,7 @@ echo $0
 ##$1 is the first argument and $n is the nth argument
 echo $1
 ## Pull all the passed values (bash 5_inputs.sh xyz 123)
-echo *
-echo @
+echo $*
+echo $@
 ## number of values passed is
 echo $#
