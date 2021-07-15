@@ -4,7 +4,7 @@ frontend:	##install frontend component
 	@echo installing frontend
 cart:		##install cart component
 	@echo installing cart
-catalogue:
+catalogue:	##install cart component
 	@echo installing catalogue
 payment:	##install payment component
 	@echo installing payment
@@ -18,5 +18,5 @@ mysql:		##install mysql component
 	@echo installing mysql
 rabbitmq:	##install rabbitmq component
 	@echo installing rabbitmq
-redis:
+redis:		##install redis component
 	@echo installing redis
