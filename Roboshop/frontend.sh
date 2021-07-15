@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 echo "installing Nginx\t\t...\t\e[32mdone\e[0m"
 yum install nginx -y
 
