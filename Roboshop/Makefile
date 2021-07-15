@@ -20,4 +20,5 @@ rabbitmq:	##install rabbitmq component
 	@bash rabbitmq.sh
 redis:		##install redis component
 	@bash redis.sh
-databases: mongodb redis mysql rabbitmq    ##install all databases
+databases:	##install all Databases
+databases: mongodb redis mysql rabbitmq
