@@ -6,4 +6,4 @@ echo "enabling Nginx"
 systemctl enable nginx
 
 echo "starting Nginx"
-systemctl start enginx
+systemctl start nginx
