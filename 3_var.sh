@@ -2,7 +2,7 @@
 
 a=10
 echo A=$a
-DATE = "2021-07-14"
+DATE="2021-07-14"
 echo Welcome,Today date is $DATE
 ## command subs
 NO_OF_USERS=$(who | wc -l)
