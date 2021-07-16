@@ -8,6 +8,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mDone\e[0m"
 else
     echo -e "\e[31mFail\e[0m"
+    exit 1
 fi
 
 ###echo $?   ### to print the exist status
@@ -19,6 +20,7 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mDone\e[0m"
 else
     echo -e "\e[31mFail\e[0m"
+    exit 1   ### if fail need to come out with script
 fi
 ###echo $?
 
@@ -28,5 +30,6 @@ if [ $? -eq 0 ]; then
   echo -e "\e[32mDone\e[0m"
 else
     echo -e "\e[31mFail\e[0m"
+    exit 1
 fi
 ###echo $?
