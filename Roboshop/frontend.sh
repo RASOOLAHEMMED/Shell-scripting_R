@@ -21,12 +21,12 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>$LOG
 STATUS_CHECK $?
 ###echo $?   ### to print the exist status
 
-print "enabling Nginx\t"
+print "enabling Nginx\t\t"
 systemctl enable nginx &>>$LOG
 STATUS_CHECK $?
 ###echo $?
 
-print "starting Nginx\t"
+print "starting Nginx\t\t"
 systemctl restart nginx &>>$LOG
 STATUS_CHECK $?
 ###echo $?
