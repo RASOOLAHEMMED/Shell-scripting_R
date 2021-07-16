@@ -4,9 +4,22 @@ source common.sh    ##to execute from another script
 print "installing Nginx"
 yum install nginx -y &>>$LOG
 STATUS_CHECK $?
+print "Download frontend"
+curl -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" &>>$LOG
+STATUS_CHECK $?
 
+print "Remove old HTdocs"
+cd /usr/share/nginx/html &>>$LOG && rm -rf * &>>$LOG
+STATUS_CHECK $?
+
+print "Extract frontend and archieve"
+unzip /tmp/frontend.zip &>>$LOG && mv frontend-main/* . &>>$LOG && mv static/* . &>>$LOG && rm -rf frontend-master static &>>$LOG
+STATUS_CHECK $?
+
+print "update roboshop config"
+mv localhost.conf /etc/nginx/default.d/roboshop.conf &>>$LOG
+STATUS_CHECK $?
 ###echo $?   ### to print the exist status
-###3. need to validate script running with root user or not
 
 print "enabling Nginx\t"
 systemctl enable nginx &>>$LOG
@@ -14,6 +27,6 @@ STATUS_CHECK $?
 ###echo $?
 
 print "starting Nginx\t"
-systemctl start nginx &>>$LOG
+systemctl restart nginx &>>$LOG
 STATUS_CHECK $?
 ###echo $?
