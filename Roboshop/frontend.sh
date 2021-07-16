@@ -3,7 +3,7 @@ LOG=/tmp/roboshop.log
 rm -f $LOG   ###to keep latest log
 
 echo -n -e "installing Nginx\t\t..."
-yumm install nginx -y &>>$LOG
+yum install nginx -y &>>$LOG
 if [ $? -eq 0 ]; then
   echo -e "\e[32mDone\e[0m"
 else
