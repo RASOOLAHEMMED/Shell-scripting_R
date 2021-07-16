@@ -1,5 +1,6 @@
 #!/bin/bash
 LOG=/tmp/roboshop.log
+rm -f $LOG   ###to keep latest log
 echo -e "installing Nginx\t\t...\t\e[32mdone\e[0m"
 yum install nginx -y >>$LOG
 ###1. Out from command shoud not be displayed
