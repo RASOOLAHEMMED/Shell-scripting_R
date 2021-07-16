@@ -3,7 +3,7 @@ LOG=/tmp/roboshop.log
 rm -f $LOG   ###to keep latest log
 echo -e "installing Nginx\t\t\t... "
 yum install nginx -y &>>$LOG
-if[$? -eq 0]; then
+if [ $? -eq 0 ]; then
   echo Done
 else
     echo Fail
