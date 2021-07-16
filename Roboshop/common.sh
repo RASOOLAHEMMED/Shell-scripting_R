@@ -2,6 +2,13 @@
 LOG=/tmp/roboshop.log
 rm -f $LOG   ###to keep latest log
 
+### To find out the which user to execute
+USER_ID=$(id -u)
+if [ $USER_ID -ne 0 ]; then
+  echo -e "\e[33myou should be root user / sudo user to run this script\e[0m"
+  exit 2
+fi
+
 STATUS_CHECK() {
   if [ $1 -eq 0 ]; then
   echo -e "\e[32mDone\e[0m"
@@ -14,3 +21,5 @@ fi
 print() {
   echo -n -e "$1\t\t..."
 }  ###to replace with echo command to print
+
+
