@@ -11,19 +11,23 @@ else
 fi
 }
 
-echo -n -e "installing Nginx\t\t..."
+print() {
+  echo -n -e "$1\t\t..."
+}  ###to replace with echo command to print
+
+print "installing Nginx"
 yum install nginx -y &>>$LOG
 STATUS_CHECK $?
 
 ###echo $?   ### to print the exist status
 ###3. need to validate script running with root user or not
 
-echo -n -e "enabling Nginx\t\t\t..."
+print "enabling Nginx"
 systemctl enable nginx &>>$LOG
 STATUS_CHECK $?
 ###echo $?
 
-echo -n -e "starting Nginx\t\t\t..."
+print "starting Nginx"
 systemctl start nginx &>>$LOG
 STATUS_CHECK $?
 ###echo $?
