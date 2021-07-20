@@ -20,6 +20,7 @@ fi
 }
 
 print() {
+  echo -e "########################\t$1\t########################" &>>$LOG
   echo -n -e "$1\t\t..."
 }  ###to replace with echo command to print
 
