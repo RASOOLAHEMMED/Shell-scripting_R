@@ -12,11 +12,11 @@ useradd roboshop &>>$LOG
 fi
 STATUS_CHECK $?
 
-print "Download application"
+print "Download application\t"
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>$LOG
 STATUS_CHECK $?
 
-print "Extract Downloaded code"
+print "Extract Downloaded code\t"
 cd /home/roboshop && unzip -o /tmp/catalogue.zip &>>$LOG && rm -rf catalogue && mv catalogue-main catalogue && cd /home/roboshop/catalogue && npm install --unsafe-perm &>>$LOG
 STATUS_CHECK $?
 
