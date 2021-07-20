@@ -20,7 +20,7 @@ print "Extract Downloaded code\t"
 cd /home/roboshop && unzip -o /tmp/catalogue.zip &>>$LOG && rm -rf catalogue && mv catalogue-main catalogue
 STATUS_CHECK $?
 
-print "Install NodeJS dependencies\t"
+print "Install NodeJS dependencies"
 cd /home/roboshop/catalogue && npm install --unsafe-perm &>>$LOG
 STATUS_CHECK $?
 
