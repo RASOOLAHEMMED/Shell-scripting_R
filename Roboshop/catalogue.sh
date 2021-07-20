@@ -20,6 +20,7 @@ print "Extract Downloaded code"
 cd /home/roboshop && unzip /tmp/catalogue.zip && mv catalogue-main catalogue && cd /home/roboshop/catalogue && npm install
 STATUS_CHECK $?
 
+
 # mv /home/roboshop/catalogue/systemd.service /etc/systemd/system/catalogue.service
 # systemctl daemon-reload
 # systemctl start catalogue
