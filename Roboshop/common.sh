@@ -14,6 +14,7 @@ STATUS_CHECK() {
   echo -e "\e[32mDone\e[0m"
 else
     echo -e "\e[31mFail\e[0m"
+    echo -e "\e[33m check the file for more details,log file-$LOG"
     exit 1
 fi
 }
