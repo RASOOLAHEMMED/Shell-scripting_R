@@ -30,5 +30,3 @@ STATUS_CHECK $?
 print "Load schema\t\t\"
 cd /tmp && unzip -o mongodb.zip &>>$LOG && cd mongodb-main && mongo < catalogue.js &>>$LOG && mongo < users.js &>>$LOG
 STATUS_CHECK $?
-
-
