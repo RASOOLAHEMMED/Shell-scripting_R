@@ -17,7 +17,7 @@ curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/cat
 STATUS_CHECK $?
 
 print "Extract Downloaded code"
-cd /home/roboshop && unzip /tmp/catalogue.zip && mv catalogue-main catalogue && cd /home/roboshop/catalogue && npm install --unsafe-perm &>>$LOG
+cd /home/roboshop && unzip /tmp/catalogue.zip && rm -rf catalogue && mv catalogue-main catalogue && cd /home/roboshop/catalogue && npm install --unsafe-perm &>>$LOG
 STATUS_CHECK $?
 
 
