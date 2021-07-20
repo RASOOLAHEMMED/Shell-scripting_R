@@ -12,7 +12,6 @@ gpgkey=https://www.mongodb.org/static/pgp/server-4.2.asc' >/etc/yum.repos.d/mong
 STATUS_CHECK $?
 
 
-
 # yum install -y mongodb-org
 # systemctl enable mongod
 # systemctl start mongod
