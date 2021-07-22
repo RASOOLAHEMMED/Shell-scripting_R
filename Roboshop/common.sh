@@ -115,10 +115,10 @@ Download_extraction_app_code
 
 print "Install python dependencies"
 
-# cd /home/roboshop/${component} && pip3 install -r requirements.txt &>>$LOG
+cd /home/roboshop/${component} && pip3 install -r requirements.txt &>>$LOG
 
 permission_fix
-
+STATUS_CHECK $?
 #setup_systemd
 
 }
