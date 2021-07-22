@@ -2,7 +2,7 @@
 
 source common.sh
 
-print "setup mysql repos"
+print "setup mysql repos\t"
 echo '[mysql57-community]
 name=MySQL 5.7 Community Server
 baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/7/$basearch/
@@ -10,11 +10,11 @@ enabled=1
 gpgcheck=0' > /etc/yum.repos.d/mysql.repo
 STATUS_CHECK $?
 
-print "Install MySQL\t"
+print "Install MySQL\t\t"
 yum install mysql-community-server -y &>>$LOG
 STATUS_CHECK $?
 
-print "Start MySQL service".
+print "Start MySQL service\t".
 systemctl enable mysqld &>>$LOG && systemctl start mysqld &>>$LOG
 STATUS_CHECK $?
 
@@ -30,10 +30,10 @@ print "Uninstall mysql password policy"
 echo "uninstall plugin validate_password;" | mysql -uroot -pRoboshop@1 &>>$LOG
 STATUS_CHECK $?
 
-print "Download schema"
+print "Download schema\t\t"
 curl -s -L -o /tmp/mysql.zip "https://github.com/roboshop-devops-project/mysql/archive/main.zip"
 STATUS_CHECK $?
 
-print "Load schema"
+print "Load schema\t\t"
 cd /tmp && unzip -o mysql.zip &>>$LOG && cd mysql-main && mysql -uroot -pRoboShop@1 <shipping.sql &>>$LOG
 STATUS_CHECK $?
