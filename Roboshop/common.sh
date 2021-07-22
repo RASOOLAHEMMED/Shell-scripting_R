@@ -83,7 +83,7 @@ setup_systemd
 }
 
 java() {
-  print "Install Maven"
+  print "Install Maven\t\t"
   yum install maven -y &>>$LOG
   STATUS_CHECK $?
 
@@ -91,27 +91,13 @@ add_application_user
 
 Download_extraction_app_code
 
-print "compile code"
+print "compile code\t\t"
 cd /home/roboshop/${component} && mvn clean package &>>$LOG && mv target/shipping-1.0.jar shipping.jar
 STATUS_CHECK $?
 
 permission_fix
 
 setup_systemd
-
-$ cd /home/roboshop
-$ curl -s -L -o /tmp/shipping.zip "https://github.com/roboshop-devops-project/shipping/archive/main.zip"
-$ unzip /tmp/shipping.zip
-$ mv shipping-main shipping
-$ cd shipping
-$ mvn clean package
-$ mv target/shipping-1.0.jar shipping.jar
-# mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
-# systemctl daemon-reload
-# systemctl start shipping
-# systemctl enable shipping
-
-
 
 
 }
