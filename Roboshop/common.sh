@@ -103,9 +103,7 @@ setup_systemd
 }
 
 python3() {
-
 print "Install python3\t\t"
-install Python 3
 yum install python36 gcc python3-devel -y &>>$LOG
 STATUS_CHECK $?
 
