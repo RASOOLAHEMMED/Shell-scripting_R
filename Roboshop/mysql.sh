@@ -10,7 +10,7 @@ enabled=1
 gpgcheck=0' > /etc/yum.repos.d/mysql.repo
 STATUS_CHECK $?
 
-print "Install MySQL"
+print "Install MySQL\t"
 yum install mysql-community-server -y &>>$LOG
 STATUS_CHECK $?
 
