@@ -119,7 +119,7 @@ STATUS_CHECK $?
 print "update serviceconfig"
 uid=$(id -u roboshop)
 gid=$(id -g roboshop)
-sed -i -e "/uid/ c uid=${uid}" -e "/gid/ c gid=${gid}' payment.ini &>>$LOG
+sed -i -e "/uid/ c uid=${uid}" -e "/gid/ c gid=${gid}" payment.ini &>>$LOG
 STATUS_CHECK $?
 permission_fix
 
