@@ -54,7 +54,7 @@ STATUS_CHECK $?
 
 setup_systemd() {
   print "setup systemd file\t"
-sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" -e "s/REDIS_ENDPOINT/redis.roboshop.internal/" -e "s/MONGO_ENDPOINT/mongodb.roboshop.internal/" -e "s/CATALOGUE_ENDPOINT/catalogue-frontend.roboshop.internal/" -e "s/CARTENDPOINT/cart.roboshop.internal/" -e "s/DBHOST/mysql.roboshop.internal/" /home/roboshop/${component}/systemd.service && mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service
+sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" -e "s/REDIS_ENDPOINT/redis.roboshop.internal/" -e "s/MONGO_ENDPOINT/mongodb.roboshop.internal/" -e "s/CATALOGUE_ENDPOINT/catalogue-frontend.roboshop.internal/" -e "s/CARTENDPOINT/cart.roboshop.internal/" -e "s/DBHOST/mysql.roboshop.internal/" -e "s/CARTHOST/cart.roboshop.internal/" -e "s/USERHOST/user.roboshop.internal/" -e "s/AMQPHOST/rabbitmq.roboshop.internal/" /home/roboshop/${component}/systemd.service && mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service
 STATUS_CHECK $?
 
 print "Start ${component} service\t"
@@ -122,5 +122,5 @@ gid=$(id -g roboshop)
 sed -i -e "/uid/ c uid=${uid}" -e "/gid/ c gid=${gid}" payment.ini &>>$LOG
 STATUS_CHECK $?
 permission_fix
-
+setup_systemd
 }
