@@ -62,7 +62,7 @@ sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" -e "s/REDIS_ENDPOINT/redi
 STATUS_CHECK $?
 
 print "Start ${component} service\t"
-systemctl daemon-reload &>>$LOG && systemctl start ${component} &>>$LOG && systemctl enable ${component} &>>$LOG
+systemctl daemon-reload &>>$LOG && systemctl restart ${component} &>>$LOG && systemctl enable ${component} &>>$LOG
 STATUS_CHECK $?
 }
 
