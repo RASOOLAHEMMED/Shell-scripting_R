@@ -123,6 +123,4 @@ sed -i -e "/uid/ c uid=${uid}" -e "/gid/ c gid=${gid}' payment.ini &>>$LOG
 STATUS_CHECK $?
 permission_fix
 
-#setup_systemd
-
 }
