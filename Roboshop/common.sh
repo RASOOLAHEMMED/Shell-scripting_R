@@ -26,20 +26,17 @@ print() {
 
 #################################user and catalogue resuebulity ##############################################
 
-nodejs() {
-
-  print "Install NodeJS\t\t"
-yum install nodejs make gcc-c++ -y &>>$LOG
-STATUS_CHECK $?
-
+add_application_user() {
 print "Add roboshop application user"
 id roboshop &>>$LOG
 if [ $? -ne 0 ]; then
 useradd roboshop &>>$LOG
 fi
 STATUS_CHECK $?
+}
 
-print "Download application\t"
+Download_extraction_app_code() {
+  print "Download application\t"
 curl -s -L -o /tmp/${component}.zip "https://github.com/roboshop-devops-project/${component}/archive/main.zip" &>>$LOG
 STATUS_CHECK $?
 
@@ -47,17 +44,17 @@ print "Extract Downloaded code\t"
 cd /home/roboshop && unzip -o /tmp/${component}.zip &>>$LOG && rm -rf ${component} && mv ${component}-main ${component}
 STATUS_CHECK $?
 
-print "Install NodeJS dependencies"
-cd /home/roboshop/${component} && npm install --unsafe-perm &>>$LOG
-STATUS_CHECK $?
+}
 
-print "Fix application permissions"
+permission_fix() {
+  print "Fix application permissions"
 chown roboshop:roboshop /home/roboshop -R &>>$LOG
 STATUS_CHECK $?
+}
 
-
-print "setup systemd file\t"
-sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" -e "s/REDIS_ENDPOINT/redis.roboshop.internal/" -e "s/MONGO_ENDPOINT/mongodb.roboshop.internal/" -e "s/CATALOGUE_ENDPOINT/catalogue-frontend.roboshop.internal/" /home/roboshop/${component}/systemd.service && mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service
+setup_systemd() {
+  print "setup systemd file\t"
+sed -i -e "s/MONGO_DNSNAME/mongodb.roboshop.internal/" -e "s/REDIS_ENDPOINT/redis.roboshop.internal/" -e "s/MONGO_ENDPOINT/mongodb.roboshop.internal/" -e "s/CATALOGUE_ENDPOINT/catalogue-frontend.roboshop.internal/" -e "s/CARTENDPOINT/cart.roboshop.internal/" -e "s/DBHOST/mysql.roboshop.internal/" /home/roboshop/${component}/systemd.service && mv /home/roboshop/${component}/systemd.service /etc/systemd/system/${component}.service
 STATUS_CHECK $?
 
 print "Start ${component} service\t"
@@ -65,3 +62,56 @@ systemctl daemon-reload &>>$LOG && systemctl restart ${component} &>>$LOG && sys
 STATUS_CHECK $?
 }
 
+nodejs() {
+
+add_application_user
+
+print "Install NodeJS\t\t"
+yum install nodejs make gcc-c++ -y &>>$LOG
+STATUS_CHECK $?
+
+Download_extraction_app_code
+
+print "Install NodeJS dependencies"
+cd /home/roboshop/${component} && npm install --unsafe-perm &>>$LOG
+STATUS_CHECK $?
+
+permission_fix
+
+setup_systemd
+
+}
+
+java() {
+  print "Install Maven"
+  yum install maven -y &>>$LOG
+  STATUS_CHECK $?
+
+add_application_user
+
+Download_extraction_app_code
+
+print "compile code"
+cd /home/roboshop/${component} && mvn clean package &>>$LOG && mv target/shipping-1.0.jar shipping.jar
+STATUS_CHECK $?
+
+permission_fix
+
+setup_systemd
+
+$ cd /home/roboshop
+$ curl -s -L -o /tmp/shipping.zip "https://github.com/roboshop-devops-project/shipping/archive/main.zip"
+$ unzip /tmp/shipping.zip
+$ mv shipping-main shipping
+$ cd shipping
+$ mvn clean package
+$ mv target/shipping-1.0.jar shipping.jar
+# mv /home/roboshop/shipping/systemd.service /etc/systemd/system/shipping.service
+# systemctl daemon-reload
+# systemctl start shipping
+# systemctl enable shipping
+
+
+
+
+}
