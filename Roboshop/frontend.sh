@@ -22,7 +22,7 @@ STATUS_CHECK $?
 ###echo $?   ### to print the exist status
 
 print "Update roboshop config\t"
-sed -i -e '/catalogue/ s/localhost/catalogue-frontend.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
+sed -i -e '/catalogue/ s/localhost/catalogue-frontend.roboshop.internal/' -e '/user/ s/localhost/user.roboshop.internal/' /etc/nginx/default.d/roboshop.conf
 STATUS_CHECK $?
 
 print "enabling Nginx\t\t"
