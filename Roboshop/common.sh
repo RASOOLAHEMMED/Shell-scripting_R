@@ -101,3 +101,24 @@ setup_systemd
 
 
 }
+
+python3() {
+
+print "Install python3\t\t"
+Install Python 3
+yum install python36 gcc python3-devel -y &>>$LOG
+STATUS_CHECK $?
+
+add_application_user
+
+Download_extraction_app_code
+
+print "Install python dependencies"
+
+# cd /home/roboshop/${component} && pip3 install -r requirements.txt &>>$LOG
+
+permission_fix
+
+#setup_systemd
+
+}
